@@ -1,0 +1,126 @@
+- publication
+	- source file headers
+	+ readme
+		+ scheme
+		+ protocol data
+		+ licensing
+		+ pics: app screen, device
+		+ links to nRF24LE1 programmers
+	+ app
+		+ icon
+		+ app human-readable name
+		+ compile android app
+	+ clone le1 sdk repo, do pull request with fixes
+	+ make ref to that repo
+	+ firmware
+		+ fix battery voltage detection
+		+ MAC generation
+	+ submit fix to nRF24LE1_Programmer
+
+- additional functions:
+	- min, max, mean (in last 6 hours)
+	- history (12h interval day-night)
+	- fix battery level readout
+		- change comparator settings after read
+		- relaxation
+
+- app
+	+ bring structure
+	+ remember name and nodes
+	- remember all measurments
+	- draw a chart
+	+ clear button
+	- autocleanup
+		- old sensors
+		- old history
+
+- ble tx: determine tx interval
+- rtc
+	-16mhz 60ppm (~5.2sec / day)
+- power
+	- no 32k crystal	87uA	~ 2000-3000h (83-125d)
+	- with 32k crystal	1.6uA	~ 70000h (8y)
+		Memory retention, timers on
+		XOSC32K or RCOSC32K
+		RTC2 and watchdog clocked on 32 kHz clock
+	- active 2.5mA
+- data logging (space, intervals)
+- sensors
+	- temperature
+	- humidity
+	- !voltage
+- LED
+- DHT22 current: 
+	stand-by 40-50uA
+	active 1-1.5mA
+Collecting period should be : >2 second
+
+- dev plan
+	- nrf24LE1 tests
+		- run RTC
+		- test sleep mode
+		- test ble tx
+	+ dht22 test
+		+ startup time 800-1000ms
+
+- other sensors
+HTU21
+SHT21
+
+------------------BLE Data
+history
+max service data = 21-6(size, type, 32bit-UUID) = 15b
+[cur temp](2) [cur hum](2) [6min offset](1) [5x temp, 5x hum history](10) 
+
+current = 21
+[flags](3) [name 6chars = "wNode0"](8) [cur temp, hum](6+4=10)
+
+------------------Send strategy
+non-sleep time, send only
+-
+19ms - prepare, 3x send
+10ms - same data
+4.2ms - remember 3channel copies
+
+------------------Sleep strategy
++ does pins still output power when cpu sleeps: yes
+
+1980ms - 2uA
+10ms - 4mA
+10ms - 15mA
+----
+mean = 190uA
+battery 200mAh -> 43d
+
+N sec : sleep : "Register retention, timers off (CLKLF from RCOSC32K)" (normal wake-up) : 2uA
+10 us : (every K time) enable sensor power
+1 sec : sleep : "Register retention, timers off (CLKLF from RCOSC32K)" (normal wake-up) : 2uA
+active:
+	- every K time
+		- read sensor data
+		- disable sensor
+	- send data over radio
+
+------------------react native app links
+npm run android - start with emulator
+npm start - start 'server'
+
+https://reactnative.dev/docs/environment-setup
+https://github.com/ocetnik/react-native-background-timer
+https://blog.expo.io/so-you-want-to-build-a-bluetooth-app-with-react-native-and-expo-6ea6a31a151d
+https://github.com/Polidea/react-native-ble-plx
+https://github.com/react-native-community/async-storage
+https://github.com/indiespirit/react-native-chart-kit
+
+https://jgilfelt.github.io/AndroidAssetStudio/icons-launcher.html
+
+1. install shit: https://reactnative.dev/docs/environment-setup
+2. npx react-native init wnodestation --template react-native-template-typescript
+3. npm run android
+4. install https://github.com/Polidea/react-native-ble-plx
+5. npm install buffer date-fns --save
+
+cd android
+gradlew bundleRelease
+java -jar D:\myPrj\EXPEREMETAL\weather-node\bundletool-all.jar build-apks --bundle="app-release.aab" --output=app-release.apks --mode=universal
+adb install wnodestation_0.0.1.apk

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="wnode" />
+		<Option pch_mode="2" />
+		<Option compiler="sdcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/wnode.ihx" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="5" />
+				<Option compiler="sdcc" />
+				<Compiler>
+					<Add option="--model-large" />
+					<Add option="--opt-code-size" />
+					<Add option="--std-sdcc11" />
+					<Add directory="." />
+				</Compiler>
+				<ExtraCommands>
+					<Add after='cmd /c &quot;type $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).mem&quot;' />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="--model-large" />
+			<Add option="-mmcs51" />
+			<Add option="--std-sdcc11" />
+			<Add directory="nRF24LE1_SDK/include" />
+		</Compiler>
+		<Linker>
+			<Add option="--xram-size 1024" />
+			<Add option="--iram-size 256" />
+			<Add option="--code-size 16384" />
+			<Add option="--out-fmt-ihx" />
+		</Linker>
+		<ExtraCommands>
+			<Add after='cmd /c &quot;packihx &lt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).ihx &gt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).hex&quot;' />
+		</ExtraCommands>
+		<Unit filename="ble.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ble.h" />
+		<Unit filename="dht22.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dht22.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/include/acomp.h" />
+		<Unit filename="nRF24LE1_SDK/include/adc.h" />
+		<Unit filename="nRF24LE1_SDK/include/delay.h" />
+		<Unit filename="nRF24LE1_SDK/include/enc_dec_accel.h" />
+		<Unit filename="nRF24LE1_SDK/include/gpio.h" />
+		<Unit filename="nRF24LE1_SDK/include/interrupt.h" />
+		<Unit filename="nRF24LE1_SDK/include/memory.h" />
+		<Unit filename="nRF24LE1_SDK/include/mspi.h" />
+		<Unit filename="nRF24LE1_SDK/include/owi.h" />
+		<Unit filename="nRF24LE1_SDK/include/pwm.h" />
+		<Unit filename="nRF24LE1_SDK/include/pwr_clk_mgmt.h" />
+		<Unit filename="nRF24LE1_SDK/include/reg24le1.h" />
+		<Unit filename="nRF24LE1_SDK/include/rf.h" />
+		<Unit filename="nRF24LE1_SDK/include/rng.h" />
+		<Unit filename="nRF24LE1_SDK/include/rtc2.h" />
+		<Unit filename="nRF24LE1_SDK/include/sspi.h" />
+		<Unit filename="nRF24LE1_SDK/include/timer0.h" />
+		<Unit filename="nRF24LE1_SDK/include/timer1.h" />
+		<Unit filename="nRF24LE1_SDK/include/timer2.h" />
+		<Unit filename="nRF24LE1_SDK/include/uart.h" />
+		<Unit filename="nRF24LE1_SDK/include/w2.h" />
+		<Unit filename="nRF24LE1_SDK/include/watchdog.h" />
+		<Unit filename="nRF24LE1_SDK/src/delay/src/delay_ms.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/delay/src/delay_us.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/gpio/src/gpio_pin_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/gpio/src/gpio_pin_val_clear.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/gpio/src/gpio_pin_val_complement.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/gpio/src/gpio_pin_val_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/gpio/src/gpio_pin_val_set.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/gpio/src/gpio_pin_val_write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/pwr_clk_mgmt/src/pwr_clk_mgmt_cclk_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/pwr_clk_mgmt/src/pwr_clk_mgmt_clklf_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/pwr_clk_mgmt/src/pwr_clk_mgmt_get_cclk_freq_in_hz.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/pwr_clk_mgmt/src/pwr_clk_mgmt_op_mode_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/pwr_clk_mgmt/src/pwr_clk_mgmt_pwr_failure_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/pwr_clk_mgmt/src/pwr_clk_mgmt_wakeup_sources_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_get_all_registers.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_irq_clear.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_irq_clear_all.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_is_rpd_active.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_power_down.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_power_down_param.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_power_up.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_power_up_param.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_read_register.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_read_register_1_byte.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_read_rx_payload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_read_rx_payload_width.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_rx_fifo_is_empty.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_rx_fifo_is_full.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_set_as_rx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_set_as_tx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_set_data_rate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_set_output_power.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_set_rf_channel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_set_rx_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_set_tx_addr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_spi_configure_enable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_spi_execute_command.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_spi_send_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_spi_send_read_byte.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_transmit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_tx_fifo_is_empty.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_tx_fifo_is_full.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_write_register.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_write_tx_ack_payload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_write_tx_payload.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rf/src/rf_write_tx_payload_noack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rng/src/rng_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rng/src/rng_get_next_byte.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rtc2/src/rtc2_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/rtc2/src/rtc2_set_compare_val.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/timer1/src/timer1_configure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/putchar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/uart_calc_actual_baud_rate_from_s0rel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/uart_calc_actual_baud_rate_from_th1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/uart_calc_s0rel_value.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/uart_calc_th1_value.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/uart_configure_auto_baud_calc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/uart_configure_manual_baud_calc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/uart_send_wait_for_complete.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nRF24LE1_SDK/src/uart/src/uart_wait_for_rx_and_get.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="target_nrf24le1_sdk.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
