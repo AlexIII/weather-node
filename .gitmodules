@@ -1,0 +1,3 @@
+[submodule "wnode1-firmware/nRF24LE1_SDK"]
+	path = wnode1-firmware/nRF24LE1_SDK
+	url = https://github.com/AlexIII/nRF24LE1_SDK.git

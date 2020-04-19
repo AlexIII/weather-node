@@ -1,7 +1,7 @@
 # Weather Node
 
 <img style="border-radius: 15px;" width="170" align="right" src="img/wns-icon.png" />
-**Weather Node** is a small battery-powered module with temperature and humidity sensors that transmits measurements via Bluetooth LE to your phone.
+**Weather Node** is a small battery-powered temperature and humidity sensor that transmits measurements via Bluetooth LE to your phone.
 
 The battery is expected to last for 3 - 6 months (depending on battery and ambient temperature).
 
@@ -30,7 +30,7 @@ In order to upload firmware to the nRF24LE1 board you may also need FT232RL usb-
 
 Only Android version is available now (`.apk`). After installation you will need to give the app permissions to access Bluetooth (on modern Android versions it also requires Location permissions as well). 
 
-The app is developed with react-native framework, so it's possible to compile it for IOS (I'm sure some it'll require some fixes). You're very welcome to try and do that, especially if you have the necessary environment installed.
+The app is developed with react-native framework, so it's possible to compile it for IOS (I'm sure it'll require some fixes though). You're very welcome to try and do that, especially if you have the necessary environment installed.
 
 ## Project Files
 
@@ -41,7 +41,7 @@ The app is developed with react-native framework, so it's possible to compile it
 
 1. DHT22 turned out to be a crappy sensor. It showed very bad stability under freezing temperatures and low voltage power supply. It will be replaced with superior AHT10 the moment I'll get my hands on it.
 <img width="300" src="img/mad-DHT22.png" />
-Incredible readings from DHT22 after 12 hours in my fridge (~ +5°C).
+Funny readings from DHT22 after 12 hours in my fridge (~ +5°C).
 
 ## BLE Protocol Details
 
@@ -58,7 +58,7 @@ Weather Node emulates BLE advertisement packages. All meaningful data is packed 
 
 All files in this repo, except `wnode1-firmware/nRF24LE1_SDK`  go by MIT License © github.com/AlexIII
 
-**Note**, `wnode1-firmware/nRF24LE1_SDK` is licensed under LGPL.
+**Note**, `wnode1-firmware/nRF24LE1_SDK` is a separate project. It's licensed under LGPL.
 
 Due to SDK licensing, precompiled firmware (`*.hex`) for nRF24LE1 is under LGPL.
 
