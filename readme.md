@@ -1,6 +1,7 @@
 # Weather Node
 
 <img style="border-radius: 15px;" width="170" align="right" src="img/wns-icon.png" />
+
 **Weather Node** is a small battery-powered temperature and humidity sensor that transmits measurements via Bluetooth LE to your phone.
 
 The battery is expected to last for 3 - 6 months (depending on battery and ambient temperature).
@@ -26,6 +27,7 @@ In order to upload firmware to the nRF24LE1 board you may also need FT232RL usb-
 
 ## Weather Node Station
 <img width="300" align="right" src="img/wns-screen.png" />
+
 **Weather Node Station** is an app for your phone that receives data from Weather Nodes.
 
 Only Android version is available now (`.apk`). After installation you will need to give the app permissions to access Bluetooth (on modern Android versions it also requires Location permissions as well). 
@@ -35,7 +37,7 @@ The app is developed with react-native framework, so it's possible to compile it
 ## Project Files
 
 - wnode1-firmware/ - firmware for Weather Node MCU (nRF24LE1). Project for [Code::Blocks](http://www.codeblocks.org/) with [SDCC](http://sdcc.sourceforge.net/)
-- wnodestation/ - [React Native](reactnative.dev) app for phone
+- wnodestation/ - [React Native](http://reactnative.dev) app for phone
 
 ## Known Issues
 
