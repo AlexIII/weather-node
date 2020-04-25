@@ -13,8 +13,8 @@
 #define DHT22_DATA_PIN GPIO_PIN_ID_P1_6
 
 typedef struct {
-    uint8_t temperature[2];
     uint8_t humidity[2];
+    uint8_t temperature[2];
     uint8_t crc;
 } dht22_data_t;
 

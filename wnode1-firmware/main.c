@@ -43,8 +43,8 @@ static uint8_t ble_mac[6] = {0xCB, 0x71, 0x1D, 0xBB, 0xA5, 0x6A};
 //max 8 bytes
 typedef struct {
     uint8_t uuid[2];
-    uint8_t temperature[2];
     uint8_t humidity[2];
+    uint8_t temperature[2];
     struct flags_t {
         battery_level_t battery_level   : 2;
         bool            sensor_fail     : 1;
