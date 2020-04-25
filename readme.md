@@ -25,6 +25,28 @@ In order to upload firmware to the nRF24LE1 board you may also need FT232RL usb-
 - [Program nRF24LE1 with FT232R](https://github.com/jdelfes/nrf24le1_flasher)
 - [Program nRF24LE1 with Arduino](https://github.com/DeanCording/nRF24LE1_Programmer)
 
+## Arduino-based Weather Node
+
+<img style="border-radius: 10px;" width="220" align="right" src="img/wn-ard-photo.jpg" />
+
+A version of Weather Node built with Arduino Pro Mini (or any other) and nrf24L01 module.
+
+This is a reworked version of [BLE_beacon](https://github.com/cbm80amiga/BLE_beacon) project by [cbm80amiga](https://github.com/cbm80amiga) adapted in a way so it would work with [Weather Node Station](https://github.com/AlexIII/weather-node#weather-node-station), an Android app.
+
+The device can use external DHT11 sensor (humidity + temperature) or internal Arduino sensor (temperature only).
+
+Main changes from the original version:
+- CPU clock is lowered to 8MHz for boards with 16 MHz crystal (for reliable operation from 3v battery);
+- connection of `CE` pin of nrf24L01 moved to Arduino pin `A0`;
+- BLE data format of [Weather Node](https://github.com/AlexIII/weather-node#ble-protocol-details);
+- random MAC generation on power-on;
+- usage of calibration values for the internal Arduino temperature sensor (this should give better temperature precision);
+- longer sleep period.
+
+#### Notes on Arduino power supply
+If you plan to power the device from CR2032 or another low-capacity power source, add 300uF capacitor in parallel to the battery, as nrf24L01 chip creates a current surge during data transmission that can reset the Arduino. Also, remove the power regulator IC and LEDs from the Arduino board for lower power consumption.
+
+
 ## Weather Node Station
 <img width="300" align="right" src="img/wns-screen.png" />
 
@@ -37,6 +59,7 @@ The app is developed with react-native framework, so it's possible to compile it
 ## Project Files
 
 - wnode1-firmware/ - firmware for Weather Node MCU (nRF24LE1). Project for [Code::Blocks](http://www.codeblocks.org/) with [SDCC](http://sdcc.sourceforge.net/)
+- wnode2-arduino-firmware/ - Arduino sketch for Arduino-based Weather Node
 - wnodestation/ - [React Native](http://reactnative.dev) app for phone
 
 ## Known Issues
@@ -58,9 +81,10 @@ Weather Node emulates BLE advertisement packages. All meaningful data is packed 
 
 ## License
 
-All files in this repo, except `wnode1-firmware/nRF24LE1_SDK`  go by MIT License © github.com/AlexIII
+All files in this repo, except `./wnode1-firmware/nRF24LE1_SDK` and `./wnode2-arduino-firmware` go by MIT License © github.com/AlexIII
 
-**Note**, `wnode1-firmware/nRF24LE1_SDK` is a separate project. It's licensed under LGPL.
+- `wnode1-firmware/nRF24LE1_SDK` is a separate project. It's licensed under LGPL v2.1.
+- `wnode2-arduino-firmware` is a modified fork of [BLE_beacon](https://github.com/cbm80amiga/BLE_beacon) project by [cbm80amiga](https://github.com/cbm80amiga). It's licensed under LGPL v3.0 © 2019 Pawel A. Hernik.
 
-Due to SDK licensing, precompiled firmware (`*.hex`) for nRF24LE1 is under LGPL.
+Due to SDK licensing, precompiled firmware (`*.hex`) for nRF24LE1 is under LGPL v2.1.
 
