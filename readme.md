@@ -52,9 +52,9 @@ Weather Node emulates BLE advertisement packages. All meaningful data is packed 
 | Field       | Offset (bytes) | Size (bytes) | Value                                                        |
 | ----------- | -------------- | ------------ | ------------------------------------------------------------ |
 | UUID        | 0              | 2            | UUID[0] == 0xA9, UUID[1] ==0x53                              |
-| temperature | 2              | 2            | Temperature in DHT22 format                                  |
-| humidity    | 4              | 2            | Humidity in DHT22 format                                     |
-| flags       | 6              | 1            | Bits 0, 1: battery level (0 - HIGH, 1 - MED_HIGH, 2 - MED_LOW, 3 - LOW) <br />Bit 2: sensor failure flag |
+| humidity    | 2              | 2            | Humidity in DHT22 format <br />If (humidity[0] == 0x80 && humidity[1] == 0x00) then <br />the channel is inactive. |
+| temperature | 4              | 2            | Temperature in DHT22 format                                  |
+| flags       | 6              | 1            | Bits 0, 1: battery level (0 - HIGH, 1 - MED_HIGH, 2 - MED_LOW, 3 - LOW)  <br />Bit 2: sensor failure flag |
 
 ## License
 

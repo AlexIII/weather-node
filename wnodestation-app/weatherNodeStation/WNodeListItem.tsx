@@ -35,8 +35,12 @@ export const WNodeListItem = ({node, title}: WeatherNodeListItemProps) => {
           <Text style={styles.sensorValue}>{node.temperature}°C</Text>
         </View>
         <View style={{width: '100%', flex: 1, flexDirection: 'row'}}>
-          <Image style={{width: 30, height: 30, resizeMode: 'contain'}} source={require('./icons/hum-icon.png')} />
-          <Text style={styles.sensorValue}>{node.humidity}%</Text>
+          { !node.humidity? null :
+            <>
+              <Image style={{width: 30, height: 30, resizeMode: 'contain'}} source={require('./icons/hum-icon.png')} />
+              <Text style={styles.sensorValue}>{node.humidity}%</Text>
+            </>
+          }
         </View>
       </View>
     </View>

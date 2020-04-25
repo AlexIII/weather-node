@@ -24,7 +24,7 @@ export interface WeatherNode {
   mac: string;
   name: string;
   temperature: number;
-  humidity: number;
+  humidity?: number;
   batteryLevel?: 'high' | 'medium-high' | 'medium-low' | 'low';
   error?: string;
   updated: string;
@@ -83,8 +83,9 @@ export const SensorListScreen = () => {
       if(device?.name?.startsWith("wNode") && device.manufacturerData) {
         const mbuff = new Buffer(device.manufacturerData, 'base64');
         if(mbuff.length >= 8 && mbuff[0] == 0xA9 &&  mbuff[1] == 0x53) {
+          const isActive = (byteH: number, byteL: number) => !(byteH === 0x80 && byteL === 0);
           const toInt16 = (byteH: number, byteL: number) => (((byteH & 0x7F) << 8) + byteL) * ((byteH & 0x80)? -1 : 1);
-          const humidity = toInt16(mbuff[2], mbuff[3])/10;
+          const humidity = isActive(mbuff[2], mbuff[3])? toInt16(mbuff[2], mbuff[3])/10 : undefined;
           const temperature = toInt16(mbuff[4], mbuff[5])/10;
           const flags = mbuff[6];
           const batteryLevel = ['high', 'medium-high', 'medium-low', 'low'][flags&0x3] as any;
@@ -191,8 +192,8 @@ const genFakeNode = (mac: string): WeatherNode => {
   return {
     mac: mac,
     name: "wNode0",
-    temperature: temperature,
-    humidity: humidity,
+    temperature,
+    humidity,
     error: Math.random() < 0.1? 'sensor failure' : undefined,
     batteryLevel,
     updated: new Date().toString()
