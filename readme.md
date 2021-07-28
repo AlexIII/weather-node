@@ -46,7 +46,6 @@ Main changes from the original version:
 #### Notes on Arduino power supply
 If you plan to power the device from CR2032 or another low-capacity power source, add 300uF capacitor in parallel to the battery, as nrf24L01 chip creates a current surge during data transmission that can reset the Arduino. Also, remove the power regulator IC and LEDs from the Arduino board for lower power consumption.
 
-
 ## Weather Node Station
 <img width="300" align="right" src="img/wns-screen.png" />
 
@@ -55,6 +54,10 @@ If you plan to power the device from CR2032 or another low-capacity power source
 Only Android version is available now (`.apk`). After installation you will need to give the app permissions to access Bluetooth (on modern Android versions it also requires Location permissions as well). 
 
 The app is developed with react-native framework, so it's possible to compile it for IOS (I'm sure it'll require some fixes though). You're very welcome to try and do that, especially if you have the necessary environment installed.
+
+## How to use with ESPHome and Home Assistant
+
+See [#8](https://github.com/AlexIII/weather-node/issues/8)
 
 ## Project Files
 
@@ -75,9 +78,10 @@ Weather Node emulates BLE advertisement packages. All meaningful data is packed 
 | Field       | Offset (bytes) | Size (bytes) | Value                                                        |
 | ----------- | -------------- | ------------ | ------------------------------------------------------------ |
 | UUID        | 0              | 2            | UUID[0] == 0xA9, UUID[1] ==0x53                              |
-| humidity    | 2              | 2            | Humidity in DHT22 format <br />If (humidity[0] == 0x80 && humidity[1] == 0x00) then <br />the channel is inactive. |
-| temperature | 4              | 2            | Temperature in DHT22 format                                  |
-| flags       | 6              | 1            | Bits 0, 1: battery level (0 - HIGH, 1 - MED_HIGH, 2 - MED_LOW, 3 - LOW)  <br />Bit 2: sensor failure flag |
+| Humidity    | 2              | 2            | Humidity in DHT22 format <br />If (humidity[0] == 0x80 && humidity[1] == 0x00) then <br />the channel is inactive. |
+| Temperature | 4              | 2            | Temperature in DHT22 format                                  |
+| Flags       | 6              | 1            | Bits 0, 1: battery level (0 - HIGH, 1 - MED_HIGH, 2 - MED_LOW, 3 - LOW)  <br />Bit 2: sensor failure flag |
+| Reserved    | 7              | 1            | - |
 
 ## License
 
